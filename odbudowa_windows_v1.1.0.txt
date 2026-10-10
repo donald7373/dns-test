@@ -1,0 +1,31 @@
+ODTWORZENIE APLIKACJI 1.1.0 Z KODU — WINDOWS x64
+================================================
+
+Nie potrzeba tych narzędzi do uruchomienia dostarczonego EXE.
+Poniższe polecenia są wyłącznie dla osób odbudowujących lub modyfikujących program.
+
+Wymagany Python Windows x64 3.13.12 z pip. W PowerShell w katalogu źródła:
+
+py -3.13 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install PySide6-Essentials==6.8.3 shiboken6==6.8.3 pyinstaller==6.20.0
+.\.venv\Scripts\python.exe -m unittest discover -v -p test_dns_native_v1_1_0.py
+.\.venv\Scripts\python.exe -m PyInstaller --onefile --windowed --noupx --clean --noconfirm --name dns_test_v1.1.0 --version-file windows_version_v1.1.0.txt --exclude-module PySide6.QtWebEngineCore --exclude-module PySide6.QtWebEngineWidgets --exclude-module PySide6.QtWebEngineQuick --exclude-module http.server --exclude-module webbrowser dns_test_v1.1.0.py
+
+Wynik: dist\dns_test_v1.1.0.exe. Systemowa ikona PyInstaller w tej odbudowie nie
+wpływa na działanie. Dodaj własny plik ICO przez --icon, jeżeli chcesz inną ikonę.
+
+Kod nie importuje poprzedniej wersji aplikacji. Zgodne wersje bibliotek można
+wymieniać i odbudowywać EXE; należy ponownie wykonać testy.
+Podpisu wydawcy nie tworzy żadne z tych poleceń.
+
+BIBLIOTEKI / ŹRÓDŁA
+PySide6 i shiboken6 6.8.3: https://code.qt.io/cgit/pyside/pyside-setup.git/tag/?h=v6.8.3
+Qt 6.8.3: https://download.qt.io/archive/qt/6.8/6.8.3/submodules/
+CPython 3.13.12: https://github.com/python/cpython/tree/v3.13.12
+PyInstaller 6.20.0: https://github.com/pyinstaller/pyinstaller/tree/v6.20.0
+
+W folderze licencje znajdują się teksty LGPLv3, GPLv3, licencji CPython
+oraz PyInstaller i metadane dostarczonych bibliotek PySide6/shiboken6.
+Są to oryginalne, niezmodyfikowane biblioteki. Wybrana wersja stosuje alternatywne
+licencjonowanie; ten projekt nie zakłada posiadania komercyjnej licencji Qt.
+Informacje o wszystkich komponentach Qt i ich prawach znajdują się też w źródłach Qt.

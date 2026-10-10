@@ -1,0 +1,58 @@
+DNS TEST 1.1.0 — NATYWNA APLIKACJA WINDOWS x64
+=============================================
+
+URUCHOMIENIE
+Skopiuj dns_test_v1.1.0.exe na komputer z Windows 11 x64 i uruchom dwuklikiem.
+Do pracy wystarczy sam plik EXE. Nie instalujesz Pythona, Qt ani bibliotek.
+Program ma własne okno; NIE otwiera przeglądarki, NIE uruchamia serwera HTTP
+ani okna konsoli. Zamknięcie jego okna kończy aplikację.
+Nie wymaga uruchamiania jako administrator i nie zmienia DNS w Windows.
+Instrukcja, kod źródłowy i dokumenty licencyjne nie są zależnościami programu.
+
+UŻYCIE
+1. Zaznacz serwery DNS albo dodaj własny adres IPv4/IPv6 (maksymalnie 32).
+2. Opcjonalnie dodaj DNS-y odczytane z ustawień systemu.
+3. Ustaw domeny, liczbę prób (10–200), timeout (200–5000 ms), A/AAAA i rozgrzewkę.
+4. Rozpocznij pomiar. Wykresy i ranking aktualizują się w tym samym oknie.
+5. Zatrzymaj test, skopiuj rekomendację albo zapisz wyniki CSV.
+6. Listę i parametry można zapisać/wczytać przez JSON; ustawienia są zapamiętywane
+   dla użytkownika przez QSettings.
+Zamknięcie podczas pomiaru anuluje pracę i czeka na zakończenie rozpoczętych
+zapytań, nie zamrażając interfejsu. Odczyt DNS systemowego ma limit 8 sekund.
+
+CO MIERZY
+Prawdziwe odpowiedzi DNS przez UDP/53, z przejściem na TCP po obciętej odpowiedzi.
+Mediana, średnia, P95, minimum, maksimum, odchylenie standardowe i błędy.
+Każdy kandydat otrzymuje te same domeny i tę samą liczbę prób.
+Rozgrzewka jest pomijana w statystykach. Błędy nie są udanymi szybkimi odpowiedziami.
+Rekomendacja pojawia się po pełnym teście: minimum 10 prób i ≥95% skuteczności,
+a następnie kolejność według mediany. Nie jest gwarancją bezpieczeństwa lub prywatności.
+To klasyczny DNS, nie DoH/DoT. Program nie opróżnia cache serwerów i nie waliduje
+kryptograficznie DNSSEC. Prywatne domeny są wysyłane do zaznaczonych DNS-ów.
+
+PODPIS I OSTRZEŻENIA WINDOWS
+Ten plik EXE NIE ma zaufanego podpisu cyfrowego wydawcy.
+Nie gwarantujemy braku ostrzeżenia SmartScreen/Defender. Testy funkcjonalne
+nie zastępują oceny reputacji pliku przez Windows ani skanowania antywirusowego.
+Nie wyłączaj zabezpieczeń systemu w celu uruchomienia programu.
+Podpisywanie zaufaną tożsamością wydawcy jest osobnym etapem wymagającym
+odpowiedniego certyfikatu/usługi i zgody właściciela. Nie utworzono pozornego
+samopodpisanego certyfikatu i nie zmieniono ustawień zabezpieczeń Windows.
+
+WERYFIKACJA
+Zbudowano rzeczywisty PE32+ x86-64 w trybie GUI/onefile/windowed, bez UPX,
+z Pythonem Windows 3.13.12, PyInstallerem 6.20.0 i Qt/PySide6 6.8.3.
+19 testów silnika i natywnego GUI przeszło pod Windowsowym Pythonem w Wine.
+Z uruchomionego EXE wykonano 20 rzeczywistych prób DNS, wyświetlono natywne
+okno platformy Qt windows, wykresy, ranking i rekomendację oraz wyeksportowano CSV.
+Wyniki prób obejmują zarówno poprawne odpowiedzi, jak i rzeczywiste błędy SERVFAIL;
+nie zastąpiono ich demonstracyjnymi danymi.
+Uruchomienia bezpośrednio na fizycznym Windows 11 jeszcze nie sprawdzono.
+Windowsowy odczyt systemowej konfiguracji DNS także wymaga testu na tym systemie.
+
+KOD I BIBLIOTEKI
+Kod aplikacji jest udostępniony w opcjonalnym folderze zrodla wraz z przepisem
+odbudowy EXE. Program wykorzystuje niezmodyfikowane biblioteki Qt/PySide6,
+shiboken6 i CPython. Informacje i teksty licencji bibliotek są w folderze licencje.
+Nie ograniczamy możliwości analizy aplikacji ani odbudowania jej z inną
+zgodną wersją bibliotek. Pliki z tych folderów nie są potrzebne do uruchomienia EXE.

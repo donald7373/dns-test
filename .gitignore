@@ -1,0 +1,26 @@
+# Build products and local data
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+build/
+dist/
+*.spec
+*.exe
+*.zip
+*.log
+.env
+.env.*
+*smoke*/
+wyniki*
+weryfikacja_wydania*.json
+podglad*.png
+# Previous browser edition and local verification helpers
+*v1.0.0*
+verify*.py
+package_windows*.py
+generate_icon*.py
+NATIVE_v*.md
+.DS_Store
+Thumbs.db
